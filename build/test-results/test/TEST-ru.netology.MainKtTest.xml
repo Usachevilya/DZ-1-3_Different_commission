@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.netology.MainKtTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-03-05T07:41:58" hostname="0001050-HP" time="0.124">
+  <properties/>
+  <testcase name="commissionCalculationTest_VM_Exceeded_the_limit" classname="ru.netology.MainKtTest" time="0.123"/>
+  <testcase name="commissionCalculationTest_VK_Exceeded_the_limit" classname="ru.netology.MainKtTest" time="0.0"/>
+  <testcase name="commissionCalculationTest_MM_Do600" classname="ru.netology.MainKtTest" time="0.0"/>
+  <testcase name="commissionCalculationTest_VK_Do15000" classname="ru.netology.MainKtTest" time="0.001"/>
+  <testcase name="commissionCalculationTest_MM_transferSum_75_000_00" classname="ru.netology.MainKtTest" time="0.0"/>
+  <testcase name="commissionCalculationTest_MM_Exceeded_the_limit" classname="ru.netology.MainKtTest" time="0.0"/>
+  <testcase name="commissionCalculationTest_VM_3500" classname="ru.netology.MainKtTest" time="0.0"/>
+  <testcase name="commissionCalculationTest_VM_Do600" classname="ru.netology.MainKtTest" time="0.0"/>
+  <system-out><![CDATA[Привышен лимит перевода
+Привышен лимит перевода
+Привышен лимит перевода
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

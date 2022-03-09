@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MiscellaneousCommission</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Main.kt</span></div><h1>Main.kt</h1><pre class="source lang-java linenums">
+<span class="pc" id="L2">val feeVisaMir = 0.75</span>
+
+fun main() {
+//    println(&quot;РљРѕРјРјРёСЃСЃРёСЏ СЃРѕСЃС‚Р°РІРёР»Р°: &quot; +
+//            commissionCalculation(&quot;VKPay&quot;,1_100_000_00, 1_100_000_00) +
+//            &quot; СЂСѓР±Р»РµР№&quot;)
+
+<span class="nc" id="L9">    }</span>
+
+<span class="nc" id="L11">fun commissionCalculation (cardType: String = &quot;VisaMir&quot;, transferSum: Int, transfer: Int): Int {</span>
+<span class="fc" id="L12">    var commission = 0</span>
+<span class="fc bfc" id="L13" title="All 4 branches covered.">    when(cardType) {</span>
+        &quot;MasterMaestro&quot; -&gt; {
+<span class="pc bpc" id="L15" title="1 of 4 branches missed.">            if(transfer &lt;= 150_000_00 &amp;&amp; transferSum &lt;= 600_000_00){</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">                if (transferSum &gt; 75_000_00) {</span>
+<span class="fc" id="L17">                commission = (transfer * 0.6 / 100 +20).toInt()</span>
+                }
+<span class="fc" id="L19">            } else println(&quot;РџСЂРёРІС‹С€РµРЅ Р»РёРјРёС‚ РїРµСЂРµРІРѕРґР°&quot;)</span>
+        }
+        &quot;VisaMir&quot; -&gt; {
+<span class="pc bpc" id="L22" title="1 of 4 branches missed.">            if (transfer &lt;= 150_000_00 &amp;&amp; transferSum &lt;= 600_000_00) {</span>
+<span class="fc" id="L23">                val commisionAmount = (transfer * feeVisaMir / 100).toInt()</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">                if (commisionAmount &lt;= 35_00) {</span>
+<span class="fc" id="L25">                    commission = 35_00/100</span>
+                } else {
+<span class="fc" id="L27">                    commission = commisionAmount / 100</span>
+                }
+            } else {
+
+<span class="fc" id="L31">                println(&quot;РџСЂРёРІС‹С€РµРЅ Р»РёРјРёС‚ РїРµСЂРµРІРѕРґР°&quot;)</span>
+            }
+        }
+        &quot;VKPay&quot; -&gt; {
+<span class="pc bpc" id="L35" title="1 of 4 branches missed.">            if (transfer &lt;= 15_000_00 &amp;&amp; transferSum &lt;= 40_000_00 ) {</span>
+<span class="fc" id="L36">                commission = 0</span>
+<span class="fc" id="L37">            } else println(&quot;РџСЂРёРІС‹С€РµРЅ Р»РёРјРёС‚ РїРµСЂРµРІРѕРґР°&quot;)</span>
+        }
+    }
+<span class="fc" id="L40">    return commission</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

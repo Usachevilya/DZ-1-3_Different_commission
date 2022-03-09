@@ -16,7 +16,7 @@ fun commissionCalculation (transfer: Int, cardType: String = "VKPay", transferAm
                 if (transferAmountPerMonth > 75_000_00) {
                 commission = (transfer * 0.6 / 100 +20).toInt()
                 }
-            } else println("Привышен лимит перевода")
+            } else println("Превышен лимит перевода")
         }
         "Visa", "Mir" -> {
             if (transfer <= 150_000_00 && transferAmountPerMonth <= 600_000_00) {
@@ -27,13 +27,13 @@ fun commissionCalculation (transfer: Int, cardType: String = "VKPay", transferAm
                     commission = commisionAmount / 100
                 }
             } else {
-                println("Привышен лимит перевода")
+                println("Превышен лимит перевода")
             }
         }
         "VKPay" -> {
             if (transfer <= 15_000_00 && transferAmountPerMonth <= 40_000_00 ) {
                 commission = 0
-            } else println("Привышен лимит перевода")
+            } else println("Превышен лимит перевода")
         }
     }
     return commission

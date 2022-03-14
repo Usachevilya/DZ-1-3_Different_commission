@@ -20,14 +20,14 @@ fun commissionCalculation(transfer: Int, cardType: String = "VKPay", transferAmo
     var commission = 0
     when (cardType) {
         "Master", "Maestro" -> {
-            if (limit(transfer, cardType, transferAmountPerMonth) == false) {
+            if (checkingTheLimit(transfer, cardType, transferAmountPerMonth) == false) {
                 if (transferAmountPerMonth > maximumTransferWithZeroCommissionMasterMaestro) {
                     commission = (transfer * commissionMasterMaestro / 100 + 2000).toInt()
                 }
             }
         }
         "Visa", "Mir" -> {
-            if (limit(transfer, cardType, transferAmountPerMonth) == false) {
+            if (checkingTheLimit(transfer, cardType, transferAmountPerMonth) == false) {
                 val commisionAmount = (transfer * commissionVisaMir / 100).toInt()
                 if (commisionAmount <= minimumCommissionVisaMir) {
                     commission = minimumCommissionVisaMir
@@ -37,7 +37,7 @@ fun commissionCalculation(transfer: Int, cardType: String = "VKPay", transferAmo
             }
         }
         "VKPay" -> {
-            if (limit(transfer, cardType, transferAmountPerMonth) == false) {
+            if (checkingTheLimit(transfer, cardType, transferAmountPerMonth) == false) {
                 commission = 0
             }
         }
@@ -45,10 +45,9 @@ fun commissionCalculation(transfer: Int, cardType: String = "VKPay", transferAmo
     return commission
 }
 
-fun limit(transfer: Int, cardType: String, transferAmountPerMonth: Int): Boolean {
+fun checkingTheLimit(transfer: Int, cardType: String, transferAmountPerMonth: Int): Boolean {
     when (cardType) {
         "Master", "Maestro", "Visa", "Mir" -> {
-
 
             if (transfer >= maximumTransferAmountPerDay || transferAmountPerMonth >= maximumTransferAmountPerMonth) {
                 println("Превышен лимит перевода")

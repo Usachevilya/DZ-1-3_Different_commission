@@ -11,8 +11,8 @@ val maximumTransferAmountPerMonthVK = 40_000_00
 fun main() {
     println(
         "Коммиссия составила: " +
-                commissionCalculation(100_000_00) +
-                " рублей"
+                commissionCalculation(10_000_00,    "VKPay", 1222222222) +
+                " копеек"
     )
 }
 
@@ -20,29 +20,50 @@ fun commissionCalculation(transfer: Int, cardType: String = "VKPay", transferAmo
     var commission = 0
     when (cardType) {
         "Master", "Maestro" -> {
-            if (transfer <= maximumTransferAmountPerDay && transferAmountPerMonth <= maximumTransferAmountPerMonth) {
+            if (limit(transfer, cardType, transferAmountPerMonth) == false) {
                 if (transferAmountPerMonth > maximumTransferWithZeroCommissionMasterMaestro) {
                     commission = (transfer * commissionMasterMaestro / 100 + 2000).toInt()
                 }
-            } else println("Превышен лимит перевода")
+            }
         }
         "Visa", "Mir" -> {
-            if (transfer <= maximumTransferAmountPerDay && transferAmountPerMonth <= maximumTransferAmountPerMonth) {
+            if (limit(transfer, cardType, transferAmountPerMonth) == false) {
                 val commisionAmount = (transfer * commissionVisaMir / 100).toInt()
                 if (commisionAmount <= minimumCommissionVisaMir) {
                     commission = minimumCommissionVisaMir
                 } else {
                     commission = commisionAmount
                 }
-            } else {
-                println("Превышен лимит перевода")
             }
         }
         "VKPay" -> {
-            if (transfer <= maximumTransferAmountPerDayVK && transferAmountPerMonth <= maximumTransferAmountPerMonthVK) {
+            if (limit(transfer, cardType, transferAmountPerMonth) == false) {
                 commission = 0
-            } else println("Превышен лимит перевода")
+            }
         }
     }
     return commission
+}
+
+fun limit(transfer: Int, cardType: String, transferAmountPerMonth: Int): Boolean {
+    when (cardType) {
+        "Master", "Maestro", "Visa", "Mir" -> {
+
+
+            if (transfer >= maximumTransferAmountPerDay || transferAmountPerMonth >= maximumTransferAmountPerMonth) {
+                println("Превышен лимит перевода")
+                return true
+            }
+            return false
+        }
+        "VKPay" -> {
+            if (transfer >= maximumTransferAmountPerDayVK || transferAmountPerMonth >= maximumTransferAmountPerMonthVK) {
+                println("Превышен лимит перевода")
+                return true
+            }
+            return false
+        }
+    }
+    println("Не правильно выбрана карта")
+    return false
 }
